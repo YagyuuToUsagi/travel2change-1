@@ -10,9 +10,17 @@ User = get_user_model()
 
 
 class CustomUserCreationForm(UserCreationForm):
+    is_host = forms.BooleanField(label=_("Is User a host?"), required=False)
     class Meta(UserCreationForm):
         model = User
-        fields = ('email', 'first_name', 'last_name',)
+        fields = ('email', 'first_name', 'last_name', 'is_host', )
+
+    def save(self, commit=True):
+        user = super().save()
+        if self.cleaned_data.get('is_host'):
+            host = Host.objects.create(user=user)
+            host.save()
+        return user
 
 
 class CustomUserChangeForm(UserChangeForm):
