@@ -54,12 +54,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
 
     # travel2change Apps
-    'users',
     'activities',
+    'users',
 
-    'djangocms_modules',
-
-    # Django CMS Apps
+    # Django CMS Apps and dependencies
+    'djangocms_modules',  # djangocms_modules needs to be before cms
     'cms',
     'menus',
     'sekizai',
@@ -106,6 +105,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'crispy_forms',
     'django_extensions',
+    'django_filters',
     'formtools',
 ]
 

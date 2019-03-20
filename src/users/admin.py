@@ -31,12 +31,23 @@ class CustomUserAdmin(UserAdmin):
             'classes': ('wide'),
             'fields': (
                 'email',
-                'first_name',
-                'last_name',
-                'password1',
-                'password2',
             )
         }),
+        ('Full Name', {
+            'fields': (
+                'first_name', 'last_name',
+            )
+        }),
+        ('Host', {
+            'fields': (
+                'is_host',
+            )
+        }),
+        ('Password', {
+            'fields': (
+                'password1', 'password2',
+            )
+        })
     )
     search_fields = ('email', 'first_name', 'last_name',)
     ordering = ('email', 'first_name', 'last_name', 'date_joined',)
