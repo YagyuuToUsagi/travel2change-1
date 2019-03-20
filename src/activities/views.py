@@ -3,10 +3,23 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import render
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import UpdateView
+from django.views.generic.list import ListView
 from formtools.wizard.views import SessionWizardView
+from .filters import ActivityFilter
 from .forms import ActivityUpdateForm
 from .models import Activity
 from users.models import Host
+
+class ActivityListView(ListView):
+    model = Activity
+    template_name = 'activities/activities_search_result.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filter'] = ActivityFilter(
+            self.request.GET, queryset=self.get_queryset()
+        )
+        return context
 
 
 class ActivityDetailView(DetailView):
