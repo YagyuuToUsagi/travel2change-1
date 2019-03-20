@@ -54,8 +54,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
 
     # travel2change Apps
-    'activities',
     'users',
+    'activities',
+    
 
     # Django CMS Apps and dependencies
     'djangocms_modules',  # djangocms_modules needs to be before cms
@@ -267,8 +268,7 @@ CMS_LANGUAGES = {
 
 CMS_TEMPLATES = (
     ('home.html', 'Homepage'),
-    ('fullwidth.html', 'Fullwidth'),
-    ('signup.html', 'Sign Up')
+    ('default.html', 'Default'),
 )
 
 CMS_PERMISSION = True
