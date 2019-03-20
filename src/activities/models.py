@@ -3,6 +3,7 @@ from django.core.validators import MinValueValidator
 from django.urls import reverse
 from django.utils.text import slugify
 from django.utils.translation import ugettext_lazy as _
+from cms.models import CMSPlugin
 from django_extensions.db.fields import AutoSlugField
 from .managers import ActivityManager
 from users.models import Host
@@ -145,3 +146,23 @@ class Activity(models.Model):
     # Checks if the activity is free or not
     def is_free(self):
         return self.price == 0.00 or self.price is None
+
+
+"""
+============== ACTIVITY PLUGIN MODELS =================
+"""
+
+
+class LatestActivityPlugin(CMSPlugin):
+    latest_activities = models.IntegerField(
+        default=5,
+        help_text=_('The max number of latest activities to display.')
+    )
+
+    def get_activities(self):
+        return Activity.objects.all()[:self.latest_activities]
+
+    def __str__(self):
+        return _('Latest activities: %(latest_activities)s') % {
+            'latest_activities': self.latest_activities,
+        }

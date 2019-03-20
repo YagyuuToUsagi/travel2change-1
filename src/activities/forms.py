@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Activity
+from .models import Activity, LatestActivityPlugin
 
 
 class BasicInfoForm(forms.ModelForm):
@@ -89,3 +89,13 @@ class ActivityUpdateForm(forms.ModelForm):
                 'id': 'lng_field',
             })
         }
+
+
+"""
+============== ACTIVITY PLUGIN FORMS =================
+"""
+
+class LatestActivitiesPluginForm(forms.ModelForm):
+    class Meta:
+        model = LatestActivityPlugin
+        fields = ['latest_activities']

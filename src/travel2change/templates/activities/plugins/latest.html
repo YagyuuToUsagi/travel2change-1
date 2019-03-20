@@ -1,0 +1,12 @@
+<ul>
+    {% for activity in activity_list %}
+    <li>
+        {{ activity.title }}
+    </li>
+    {% empty %}
+        <li>
+            No activities
+        </li>
+    {% endfor %}
+</ul>
+    
